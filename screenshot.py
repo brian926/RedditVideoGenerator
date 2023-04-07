@@ -28,10 +28,10 @@ def __takeScreenshot(filePrefix, driver, wait, handle="Post"):
     return fileName
 
 def __setupDriver(url: str):
-    options = webdriver.FirefoxOptions()
-    options.headless = False
+    options = webdriver.ChromeOptions()
+    options.headless = True
     options.enable_mobile = False
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 10)
 
     driver.set_window_size(width=screenWidth, height=screenHeight)

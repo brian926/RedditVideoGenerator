@@ -1,7 +1,8 @@
-import os, re, praw, markdown_to_text, time
+import os, re, praw, markdown_to_text, time, dotenv, os
 from videoscript import VideoScript
 
 redditUrl = "https://www.reddit.com/"
+dotenv.load_dotenv()
 
 def getContent(outputDir, postOptionCount) -> VideoScript:
     reddit = __getReddit()
@@ -43,12 +44,12 @@ def getContentFromId(outputDir, submissionId) -> VideoScript:
 
 def __getReddit():
     return praw.Reddit(
-        client_id="YOUR_CLIENT_ID_HERE",
-        client_secret="YOUR_CLIENT_SECRET_HERE",
+        client_id=os.getenv('CLIENT_ID'),
+        client_secret=os.getenv('CLIENT_SECRET'),
         # user_agent sounds scary, but it's just a string to identify what your using it for
         # It's common courtesy to use something like <platform>:<name>:<version> by <your name>
         # ex. "Window11:TestApp:v0.1 by u/Shifty-The-Dev"
-        user_agent="YOUR_USER_AGENT_HERE"
+        user_agent=os.getenv('USER_AGENT')
     )
 
 
