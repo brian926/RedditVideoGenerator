@@ -7,7 +7,7 @@ import random
 
 voiceoverDir = "Voiceovers"
 
-def create_voice_over(fileName, text):
+def off_create_voice_over(fileName, text):
     filePath = f"{voiceoverDir}/{fileName}.mp3"
     if(os.path.isfile(filePath)):
         return filePath
@@ -17,7 +17,7 @@ def create_voice_over(fileName, text):
         engine.runAndWait()
         return filePath
 
-def off_create_voice_over(fileName, text):
+def create_voice_over(fileName, text):
     filePath = f"{voiceoverDir}/{fileName}.mp3"
     if(os.path.isfile(filePath)):
         return filePath

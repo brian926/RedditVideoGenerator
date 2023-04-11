@@ -12,7 +12,7 @@ def getContent(outputDir, postOptionCount) -> VideoScript:
     autoSelect = postOptionCount == 0
     posts = []
 
-    for submission in reddit.subreddit("askreddit").top(time_filter="week", limit=postOptionCount*3):
+    for submission in reddit.subreddit("personalfinance").top(time_filter="week", limit=postOptionCount*3):
         if (f"{submission.id}.mp4" in existingPostIds or submission.over_18):
             continue
         hoursAgoPosted = (now - submission.created_utc) / 3600
@@ -60,7 +60,7 @@ def __getContentFromPost(submission) -> VideoScript:
 
     failedAttempts = 0
     for comment in submission.comments:
-        if (comment.body == "[removed]"):
+        if (comment.body == "[removed]" or comment.author.is_mod):
             continue
         if(content.addCommentScene(markdown_to_text.markdown_to_text(comment.body), comment.id)):
             failedAttempts += 1
