@@ -29,7 +29,7 @@ def __takeScreenshot(filePrefix, driver, wait, handle="Post"):
 
 def __setupDriver(url: str):
     options = webdriver.ChromeOptions()
-    options.headless = True
+    options.headless = False
     options.enable_mobile = False
     driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 10)
